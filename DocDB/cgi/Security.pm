@@ -287,6 +287,9 @@ sub FindUsersGroups (;%) {
   } elsif ($UserValidation eq "shibboleth") {
     require "ShibbolethUtilities.pm";
     @UsersGroupIDs = FetchSecurityGroupsForShib();
+  } elsif ($UserValidation eq "proxy") {
+    require "ProxyAuthUtilities.pm";
+    @UsersGroupIDs = FetchSecurityGroupsForProxy();
   } elsif ($UserValidation eq "FNALSSO") {
     require "FNALSSOUtilities.pm";
     @UsersGroupIDs = FetchSecurityGroupsForFSSO();
@@ -325,6 +328,9 @@ sub FetchEmailUserID (;%) {
   } elsif ($UserValidation eq "shibboleth") {
     require "ShibbolethUtilities.pm";
     $EmailUserID  = FetchEmailUserIDForShib(%Params);
+  } elsif ($UserValidation eq "proxy") {
+    require "ProxyAuthUtilities.pm";
+    $EmailUserID  = FetchEmailUserIDForProxy(%Params);
   } elsif ($UserValidation eq "FNALSSO") {
     require "FNALSSOUtilities.pm";
     $EmailUserID  = FetchEmailUserIDForFSSO();
